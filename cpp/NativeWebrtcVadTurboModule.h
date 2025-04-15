@@ -18,7 +18,7 @@
 
 namespace facebook::react {
 
-class NativeWebrtcVadTurboModule : public NativeWebrtcVadSpecCxxSpec<NativeWebrtcVadTurboModule> {
+class NativeWebrtcVadTurboModule : public NativeWebrtcVadTurboModuleCxxSpec<NativeWebrtcVadTurboModule> {
 public:
     static constexpr const char* kModuleName = "WebrtcVad";
     
