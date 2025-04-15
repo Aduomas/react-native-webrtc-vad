@@ -1338,7 +1338,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.25.2, @babel/preset-env@npm:^7.25.3":
+"@babel/preset-env@npm:^7.25.2":
   version: 7.26.9
   resolution: "@babel/preset-env@npm:7.26.9"
   dependencies:
@@ -2895,29 +2895,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native/metro-config@npm:0.78.2":
-  version: 0.78.2
-  resolution: "@react-native/metro-config@npm:0.78.2"
-  dependencies:
-    "@react-native/js-polyfills": 0.78.2
-    "@react-native/metro-babel-transformer": 0.78.2
-    metro-config: ^0.81.3
-    metro-runtime: ^0.81.3
-  checksum: a62603160f4bcbb8d7a0f6b070538837e6c2542f9a34f38a01cf5fe06012ebf2da55a62006481b756c446640a97685867e8c7d89db339562a4bff7ad6b114922
-  languageName: node
-  linkType: hard
-
 "@react-native/normalize-colors@npm:0.78.2":
   version: 0.78.2
   resolution: "@react-native/normalize-colors@npm:0.78.2"
   checksum: b7e9e10f13ac5b1c9de942a8db56076f51022d07f9b9913e4976172e2e0d01c7b4cc69a9e0d83ac12830a6c9d6882f610c13e252ade1bb4fa7f1b2ddd7167dd6
-  languageName: node
-  linkType: hard
-
-"@react-native/typescript-config@npm:0.78.2":
-  version: 0.78.2
-  resolution: "@react-native/typescript-config@npm:0.78.2"
-  checksum: 0cec653b5ece8ec4f91eca16a19770401b3bf421c29510f2990fbad489afd93372183fa17a4c6e84771325560b0098247866ce14e2b57060cc91ab26a1189c5d
   languageName: node
   linkType: hard
 
@@ -10543,26 +10524,6 @@ __metadata:
   checksum: 908cb25a13c73b8182382ca6f00d24b432fc9a8fe2b21a6d74c8d0c615f9412d6f16799ca87516e745bf3306c126aaeb4ac45f5230e6af0004e8216e2990137b
   languageName: node
   linkType: hard
-
-"react-native-webrtc-vad-example@workspace:example":
-  version: 0.0.0-use.local
-  resolution: "react-native-webrtc-vad-example@workspace:example"
-  dependencies:
-    "@babel/core": ^7.25.2
-    "@babel/preset-env": ^7.25.3
-    "@babel/runtime": ^7.25.0
-    "@react-native-community/cli": 15.0.1
-    "@react-native-community/cli-platform-android": 15.0.1
-    "@react-native-community/cli-platform-ios": 15.0.1
-    "@react-native/babel-preset": 0.78.2
-    "@react-native/metro-config": 0.78.2
-    "@react-native/typescript-config": 0.78.2
-    "@types/react": ^19.0.0
-    react: 19.0.0
-    react-native: 0.78.2
-    react-native-builder-bob: ^0.40.6
-  languageName: unknown
-  linkType: soft
 
 "react-native-webrtc-vad@workspace:.":
   version: 0.0.0-use.local

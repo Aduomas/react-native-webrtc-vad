@@ -8,12 +8,12 @@
 #include "webrtc/common_audio/vad/include/webrtc_vad.h"
 
 // Include Codegen Spec
-#if __has_include(<React-Codegen/RNWebrtcVadSpec.h>)
-#include <React-Codegen/RNWebrtcVadSpec.h>
-#elif __has_include("RNWebrtcVadSpec.h") // Fallback for different build setups
-#include "RNWebrtcVadSpec.h"
+#if __has_include(<React-Codegen/RNWebrtcVadSpecJSI.h>)
+#include <React-Codegen/RNWebrtcVadSpecJSI.h>
+#elif __has_include("RNWebrtcVadSpecJSI.h") // Fallback for different build setups
+#include "RNWebrtcVadSpecJSI.h"
 #else
-#error "Could not find RNWebrtcVadSpec.h - Codegen needs to be run"
+#error "Could not find RNWebrtcVadSpecJSI.h - Codegen needs to be run"
 #endif
 
 namespace facebook::react {
