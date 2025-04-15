@@ -7,15 +7,13 @@ add_compile_options(
     -fexceptions
     -frtti
     -std=c++17
-    -Wno-implicit-function-declaration 
-    -Wno-deprecated-declarations
 )
 
 get_filename_component(PROJECT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../" ABSOLUTE)
 set(SHARED_DIR "${PROJECT_ROOT}/cpp")
 set(WEBRTC_DIR "${SHARED_DIR}/webrtc")
 
-# Compile WebRTC VAD source files separately with C99 standard
+# Compile WebRTC VAD source files with C99 standard
 file(GLOB WEBRTC_SOURCES 
     "${WEBRTC_DIR}/common_audio/vad/*.c"
     "${WEBRTC_DIR}/common_audio/signal_processing/*.c"
@@ -31,7 +29,7 @@ set_source_files_properties(${WEBRTC_SOURCES} PROPERTIES
 # Define Android platform for WebRTC
 target_compile_definitions(webrtc PUBLIC WEBRTC_ANDROID)
 
-# Add include directories for webrtc
+# Include directories for webrtc
 target_include_directories(webrtc PUBLIC
     ${WEBRTC_DIR}
     ${WEBRTC_DIR}/common_audio/vad/include
@@ -43,11 +41,10 @@ add_library(react-native-webrtc-vad STATIC
     ${SHARED_DIR}/NativeWebrtcVadTurboModule.cpp
 )
 
-# Add include directories for the main module
+# Include directories for the main module
 target_include_directories(react-native-webrtc-vad PUBLIC
     ${SHARED_DIR}
     ${WEBRTC_DIR}
-    ${PROJECT_ROOT}/android/build/generated/source/codegen/jni
 )
 
 # Link libraries
