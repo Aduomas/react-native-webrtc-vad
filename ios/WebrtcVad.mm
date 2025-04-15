@@ -2,10 +2,10 @@
 #import <Foundation/Foundation.h>
 #import <ReactCommon/CxxTurboModuleUtils.h>
 
-@interface OnLoad: NSObject
+@interface WebrtcVadModuleLoader: NSObject
 @end
 
-@implementation OnLoad
+@implementation WebrtcVadModuleLoader
 
 +(void) load {
     facebook::react::registerCxxModuleToGlobalModuleMap(
