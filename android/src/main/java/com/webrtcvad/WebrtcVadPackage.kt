@@ -1,33 +1,18 @@
 package com.webrtcvad
 
-import com.facebook.react.BaseReactPackage
+import com.facebook.react.TurboReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
-import java.util.HashMap
 
-class WebrtcVadPackage : BaseReactPackage() {
+class WebrtcVadPackage : TurboReactPackage() {
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
-    return if (name == WebrtcVadModule.NAME) {
-      WebrtcVadModule(reactContext)
-    } else {
-      null
-    }
+    // Module is registered in C++
+    return null
   }
 
   override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
-    return ReactModuleInfoProvider {
-      val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
-      moduleInfos[WebrtcVadModule.NAME] = ReactModuleInfo(
-        WebrtcVadModule.NAME,
-        WebrtcVadModule.NAME,
-        false,  // canOverrideExistingModule
-        false,  // needsEagerInit
-        false,  // isCxxModule
-        true // isTurboModule
-      )
-      moduleInfos
-    }
+    // For C++ TurboModules, the C++ infrastructure provides the necessary info.
+    return ReactModuleInfoProvider { emptyMap() }
   }
 }

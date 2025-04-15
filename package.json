@@ -3,15 +3,9 @@
   "version": "0.1.0",
   "description": "webrtc vad for react native",
   "source": "./src/index.tsx",
-  "main": "./lib/module/index.js",
-  "types": "./lib/typescript/src/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./lib/typescript/src/index.d.ts",
-      "default": "./lib/module/index.js"
-    },
-    "./package.json": "./package.json"
-  },
+  "main": "./lib/commonjs/index.js",
+  "types": "./lib/typescript/commonjs/src/index.d.ts",
+  "module": "./lib/module/index.js",
   "files": [
     "src",
     "lib",
@@ -133,7 +127,12 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      "codegen",
+      [
+        "commonjs",
+        {
+          "esm": true
+        }
+      ],
       [
         "module",
         {
@@ -151,15 +150,7 @@
   "codegenConfig": {
     "name": "RNWebrtcVadSpec",
     "type": "modules",
-    "jsSrcsDir": "src",
-    "outputDir": {
-      "ios": "ios/generated",
-      "android": "android/generated"
-    },
-    "android": {
-      "javaPackageName": "com.webrtcvad"
-    },
-    "includesGeneratedCode": true
+    "jsSrcsDir": "src"
   },
   "create-react-native-library": {
     "type": "turbo-module",

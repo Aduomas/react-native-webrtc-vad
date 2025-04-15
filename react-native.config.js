@@ -5,7 +5,9 @@ module.exports = {
   dependency: {
     platforms: {
       android: {
-        cmakeListsPath: 'generated/jni/CMakeLists.txt',
+        cxxModuleCMakeListsModuleName: 'react-native-webrtc-vad',
+        cxxModuleCMakeListsPath: 'CMakeLists.txt',
+        cxxModuleHeaderName: 'NativeWebrtcVadTurboModule',
       },
     },
   },

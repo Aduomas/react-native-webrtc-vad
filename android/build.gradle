@@ -102,8 +102,7 @@ android {
   sourceSets {
     main {
       java.srcDirs += [
-        "generated/java",
-        "generated/jni"
+        "${project.buildDir}/generated/source/codegen/java",
       ]
     }
   }
@@ -121,8 +120,8 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
-react {
-  jsRootDir = file("../src/")
-  libraryName = "WebrtcVad"
-  codegenJavaPackageName = "com.webrtcvad"
-}
+// react {
+//   jsRootDir = file("../src/")
+//   libraryName = "WebrtcVad"
+//   codegenJavaPackageName = "com.webrtcvad"
+// }
