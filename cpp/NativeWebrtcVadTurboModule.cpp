@@ -5,7 +5,7 @@ namespace facebook::react {
 
 // Constructor - initialize member variables
 NativeWebrtcVadTurboModule::NativeWebrtcVadTurboModule(std::shared_ptr<CallInvoker> jsinvoker)
-    : vadInst(nullptr), isInitialized(false) {}
+    : NativeWebrtcVadTurboModuleCxxSpec<NativeWebrtcVadTurboModule>(std::move(jsinvoker)), vadInst(nullptr), isInitialized(false) {}
 
 // Destructor - clean up VAD instance
 NativeWebrtcVadTurboModule::~NativeWebrtcVadTurboModule() {

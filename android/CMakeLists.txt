@@ -22,9 +22,9 @@ file(GLOB WEBRTC_SOURCES
 # Create the webrtc library
 add_library(webrtc STATIC ${WEBRTC_SOURCES})
 
-# Set C99 standard specifically for WebRTC C files
+# Set C99 standard specifically for WebRTC C files and add a system include path for webrtc/ prefix resolution
 set_source_files_properties(${WEBRTC_SOURCES} PROPERTIES 
-    COMPILE_FLAGS "-std=c99 -Wno-implicit-function-declaration -Wno-deprecated-declarations")
+    COMPILE_FLAGS "-std=c99 -Wno-implicit-function-declaration -Wno-deprecated-declarations -I${SHARED_DIR}")
 
 # Define Android platform for WebRTC
 target_compile_definitions(webrtc PUBLIC WEBRTC_ANDROID)
