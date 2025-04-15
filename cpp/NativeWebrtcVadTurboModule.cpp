@@ -5,7 +5,7 @@ namespace facebook::react {
 
 // Constructor - initialize member variables
 NativeWebrtcVadTurboModule::NativeWebrtcVadTurboModule(std::shared_ptr<CallInvoker> jsinvoker)
-    : NativeWebrtcVadTurboModuleCxxSpec<NativeWebrtcVadTurboModule>(std::move(jsinvoker)) {}
+    : vadInst(nullptr), isInitialized(false) {}
 
 // Destructor - clean up VAD instance
 NativeWebrtcVadTurboModule::~NativeWebrtcVadTurboModule() {
@@ -98,20 +98,8 @@ size_t NativeWebrtcVadTurboModule::base64_decode(const std::string& input, uint8
     return output_length;
 }
 
-// CreateVad interface method (returns success=true)
-jsi::Value NativeWebrtcVadTurboModule::createVad(jsi::Runtime &rt, double mode) {
-    jsi::Object result = jsi::Object(rt);
-    
-    // Initialize the VAD if not already initialized
-    initializeVAD();
-    
-    result.setProperty(rt, "success", true);
-    // vadId is no longer returned, the instance is managed internally
-    return result;
-}
-
-// ProcessVadPcm interface method (vadId removed)
-jsi::Value NativeWebrtcVadTurboModule::processVadPcm(jsi::Runtime &rt, std::string pcmDataBase64, double sampleRate) {
+// ProcessPcm implementation (renamed from processVadPcm)
+jsi::Value NativeWebrtcVadTurboModule::processPcm(jsi::Runtime &rt, std::string pcmDataBase64, double sampleRate) {
     int fs = static_cast<int>(sampleRate);
     jsi::Object result = jsi::Object(rt);
     
@@ -184,8 +172,8 @@ jsi::Value NativeWebrtcVadTurboModule::processVadPcm(jsi::Runtime &rt, std::stri
     return result;
 }
 
-// ProcessMultipleVadPcm interface method (vadId removed)
-jsi::Value NativeWebrtcVadTurboModule::processMultipleVadPcm(jsi::Runtime &rt, std::string pcmDataBase64, double sampleRate, double chunkSize) {
+// ProcessMultiplePcm implementation (renamed from processMultipleVadPcm)
+jsi::Value NativeWebrtcVadTurboModule::processMultiplePcm(jsi::Runtime &rt, std::string pcmDataBase64, double sampleRate, double chunkSize) {
     int fs = static_cast<int>(sampleRate);
     int chunkSizeBytes = static_cast<int>(chunkSize);
     jsi::Object result = jsi::Object(rt);
@@ -269,29 +257,6 @@ jsi::Value NativeWebrtcVadTurboModule::processMultipleVadPcm(jsi::Runtime &rt, s
         result.setProperty(rt, "error", jsi::String::createFromUtf8(rt, e.what()));
     }
     
-    return result;
-}
-
-// DestroyVad interface method (vadId removed, does nothing)
-jsi::Value NativeWebrtcVadTurboModule::destroyVad(jsi::Runtime &rt) {
-    jsi::Object result = jsi::Object(rt);
-    result.setProperty(rt, "success", true);
-    return result;
-}
-
-// Stub implementation for processVadOpus (vadId removed)
-jsi::Value NativeWebrtcVadTurboModule::processVadOpus(jsi::Runtime &rt, std::string opusDataBase64, double decoderId, double sampleRate) {
-    jsi::Object result = jsi::Object(rt);
-    result.setProperty(rt, "success", false);
-    result.setProperty(rt, "error", jsi::String::createFromUtf8(rt, "Opus processing not implemented"));
-    return result;
-}
-
-// Stub implementation for processMultipleVadOpus (vadId removed)
-jsi::Value NativeWebrtcVadTurboModule::processMultipleVadOpus(jsi::Runtime &rt, std::string opusDataBase64, double decoderId, double sampleRate, double chunkSize) {
-    jsi::Object result = jsi::Object(rt);
-    result.setProperty(rt, "success", false);
-    result.setProperty(rt, "error", jsi::String::createFromUtf8(rt, "Opus processing not implemented"));
     return result;
 }
 

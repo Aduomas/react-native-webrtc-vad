@@ -1,8 +1,13 @@
-import WebrtcVad from './NativeWebrtcVad';
+import WebrtcVad from './NativeWebrtcVadTurboModule';
 
-export const createVad = WebrtcVad.createVad;
-export const processVadPcm = WebrtcVad.processVadPcm;
-export const processVadOpus = WebrtcVad.processVadOpus;
-export const processMultipleVadPcm = WebrtcVad.processMultipleVadPcm;
-export const processMultipleVadOpus = WebrtcVad.processMultipleVadOpus;
-export const destroyVad = WebrtcVad.destroyVad;
+export function processPcm(pcmDataBase64: string, sampleRate: number) {
+  return WebrtcVad.processPcm(pcmDataBase64, sampleRate);
+}
+
+export function processMultiplePcm(
+  pcmDataBase64: string, 
+  sampleRate: number, 
+  chunkSize: number
+) {
+  return WebrtcVad.processMultiplePcm(pcmDataBase64, sampleRate, chunkSize);
+}

@@ -25,15 +25,9 @@ public:
     NativeWebrtcVadTurboModule(std::shared_ptr<CallInvoker> jsInvoker);
     ~NativeWebrtcVadTurboModule();
     
-    // Required interface methods (vadId removed)
-    jsi::Value createVad(jsi::Runtime &rt, double mode);
-    jsi::Value processVadPcm(jsi::Runtime &rt, std::string pcmDataBase64, double sampleRate);
-    jsi::Value processMultipleVadPcm(jsi::Runtime &rt, std::string pcmDataBase64, double sampleRate, double chunkSize);
-    jsi::Value destroyVad(jsi::Runtime &rt);
-    
-    // Opus-related methods (stubs - not implemented, vadId removed)
-    jsi::Value processVadOpus(jsi::Runtime &rt, std::string opusDataBase64, double decoderId, double sampleRate);
-    jsi::Value processMultipleVadOpus(jsi::Runtime &rt, std::string opusDataBase64, double decoderId, double sampleRate, double chunkSize);
+    // Simplified interface methods
+    jsi::Value processPcm(jsi::Runtime &rt, std::string pcmDataBase64, double sampleRate);
+    jsi::Value processMultiplePcm(jsi::Runtime &rt, std::string pcmDataBase64, double sampleRate, double chunkSize);
 
 private:
     // Base64 utility functions
@@ -41,8 +35,8 @@ private:
     static size_t base64_decode(const std::string& input, uint8_t* output, size_t max_length);
     
     // WebRTC VAD instance (singleton)
-    VadInst* vadInst;
-    bool isInitialized;
+    VadInst* vadInst = nullptr;
+    bool isInitialized = false;
     
     // Initialize VAD with mode 3 (aggressive) and 16kHz sample rate
     void initializeVAD();
